@@ -1,0 +1,15 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.lo
+*.la
+
+# Generated files
+external/nauty2_8_9/config.*
+external/nauty2_8_9/Makefile
+external/nauty2_8_9/autom4te.cache/
+external/nauty2_8_9/*.dSYM/
+
+# Distribution files
+*.tar.gz

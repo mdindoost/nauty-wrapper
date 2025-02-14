@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnauty_wrapper.a CMakeFiles/nauty_wrapper.dir/src/nauty_wrapper.cpp.o
+/usr/bin/ranlib libnauty_wrapper.a
