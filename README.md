@@ -19,19 +19,22 @@ Make
 
 Download Nauty:
 
-Copymkdir external
+```bash
+mkdir external
 cd external
 wget https://pallini.di.uniroma1.it/nauty2_8_9.tar.gz
 tar -xzf nauty2_8_9.tar.gz
 rm nauty2_8_9.tar.gz
+```
 
 Build Nauty:
 
+```bash
 cd nauty2_8_9
 ./configure
 make
 cd ../..
-
+```
 
 ## Building
 
