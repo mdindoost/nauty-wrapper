@@ -13,3 +13,9 @@ external/nauty2_8_9/*.dSYM/
 
 # Distribution files
 *.tar.gz
+build/
+*.o
+*.a
+*.so
+.DS_Store
+*.tar.gz

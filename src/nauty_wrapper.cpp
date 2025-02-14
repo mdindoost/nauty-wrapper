@@ -1,8 +1,10 @@
 #include "nauty_wrapper.hpp"
-#include "nauty.h"
-#include "nausparse.h"
+extern "C" {
+    #include "nauty.h"
+    #include "nausparse.h"
+}
 
-namespace nauty {
+namespace nauty_wrap {  // Changed from 'nauty' to 'nauty_wrap'
 
 Graph::Graph(size_t n) : n_(n), adj_matrix_(n, std::vector<bool>(n, false)) {}
 
@@ -42,4 +44,4 @@ std::vector<std::vector<size_t>> Graph::getAutomorphisms() {
     return result;
 }
 
-} // namespace nauty
+} // namespace nauty_wrap

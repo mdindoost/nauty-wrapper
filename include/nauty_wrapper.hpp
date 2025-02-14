@@ -4,7 +4,7 @@
 #include <vector>
 #include <cstdint>
 
-namespace nauty {
+namespace nauty_wrap {  // Changed from 'nauty' to 'nauty_wrap'
 
 class Graph {
 public:
@@ -19,6 +19,6 @@ private:
     std::vector<std::vector<bool>> adj_matrix_;
 };
 
-} // namespace nauty
+} // namespace nauty_wrap
 
 #endif // NAUTY_WRAPPER_HPP
