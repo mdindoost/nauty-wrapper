@@ -73,9 +73,10 @@ bool isomorphic = g.isomorphicTo(h);  // Should return true
 // Get automorphisms
 auto autos = g.getAutomorphisms();
 ```
-License
+# License
 This wrapper is provided under the MIT License. Note that Nauty itself has its own license terms which must be respected.
-Acknowledgments
+
+# Acknowledgments
 
 Based on Nauty by Brendan McKay and Adolfo Piperno
 More information about Nauty can be found at: http://pallini.di.uniroma1.it
