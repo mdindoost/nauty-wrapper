@@ -171,6 +171,44 @@ depend:
 	cd /scratch/users/md724/nauty-wrapper/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+test/CMakeFiles/wrapper_test.dir/rule:
+	cd /scratch/users/md724/nauty-wrapper/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/wrapper_test.dir/rule
+.PHONY : test/CMakeFiles/wrapper_test.dir/rule
+
+# Convenience name for target.
+wrapper_test: test/CMakeFiles/wrapper_test.dir/rule
+.PHONY : wrapper_test
+
+# fast build rule for target.
+wrapper_test/fast:
+	cd /scratch/users/md724/nauty-wrapper/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/build
+.PHONY : wrapper_test/fast
+
+wrapper_test.o: wrapper_test.cpp.o
+.PHONY : wrapper_test.o
+
+# target to build an object file
+wrapper_test.cpp.o:
+	cd /scratch/users/md724/nauty-wrapper/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/wrapper_test.cpp.o
+.PHONY : wrapper_test.cpp.o
+
+wrapper_test.i: wrapper_test.cpp.i
+.PHONY : wrapper_test.i
+
+# target to preprocess a source file
+wrapper_test.cpp.i:
+	cd /scratch/users/md724/nauty-wrapper/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/wrapper_test.cpp.i
+.PHONY : wrapper_test.cpp.i
+
+wrapper_test.s: wrapper_test.cpp.s
+.PHONY : wrapper_test.s
+
+# target to generate assembly for a file
+wrapper_test.cpp.s:
+	cd /scratch/users/md724/nauty-wrapper/build && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/wrapper_test.cpp.s
+.PHONY : wrapper_test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -184,6 +222,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... wrapper_test"
+	@echo "... wrapper_test.o"
+	@echo "... wrapper_test.i"
+	@echo "... wrapper_test.s"
 .PHONY : help
 
 

@@ -197,6 +197,69 @@ nauty_wrapper/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/build
 .PHONY : nauty_wrapper/fast
 
+#=============================================================================
+# Target rules for targets named nauty_classify
+
+# Build rule for target.
+nauty_classify: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nauty_classify
+.PHONY : nauty_classify
+
+# fast build rule for target.
+nauty_classify/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/build
+.PHONY : nauty_classify/fast
+
+#=============================================================================
+# Target rules for targets named test_classify
+
+# Build rule for target.
+test_classify: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_classify
+.PHONY : test_classify
+
+# fast build rule for target.
+test_classify/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/build
+.PHONY : test_classify/fast
+
+#=============================================================================
+# Target rules for targets named wrapper_test
+
+# Build rule for target.
+wrapper_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wrapper_test
+.PHONY : wrapper_test
+
+# fast build rule for target.
+wrapper_test/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/build
+.PHONY : wrapper_test/fast
+
+src/nautyClassify.o: src/nautyClassify.cpp.o
+.PHONY : src/nautyClassify.o
+
+# target to build an object file
+src/nautyClassify.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.o
+.PHONY : src/nautyClassify.cpp.o
+
+src/nautyClassify.i: src/nautyClassify.cpp.i
+.PHONY : src/nautyClassify.i
+
+# target to preprocess a source file
+src/nautyClassify.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.i
+.PHONY : src/nautyClassify.cpp.i
+
+src/nautyClassify.s: src/nautyClassify.cpp.s
+.PHONY : src/nautyClassify.s
+
+# target to generate assembly for a file
+src/nautyClassify.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.s
+.PHONY : src/nautyClassify.cpp.s
+
 src/nauty_wrapper.o: src/nauty_wrapper.cpp.o
 .PHONY : src/nauty_wrapper.o
 
@@ -221,6 +284,30 @@ src/nauty_wrapper.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/src/nauty_wrapper.cpp.s
 .PHONY : src/nauty_wrapper.cpp.s
 
+test/test_nautyClassify.o: test/test_nautyClassify.cpp.o
+.PHONY : test/test_nautyClassify.o
+
+# target to build an object file
+test/test_nautyClassify.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.o
+.PHONY : test/test_nautyClassify.cpp.o
+
+test/test_nautyClassify.i: test/test_nautyClassify.cpp.i
+.PHONY : test/test_nautyClassify.i
+
+# target to preprocess a source file
+test/test_nautyClassify.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.i
+.PHONY : test/test_nautyClassify.cpp.i
+
+test/test_nautyClassify.s: test/test_nautyClassify.cpp.s
+.PHONY : test/test_nautyClassify.s
+
+# target to generate assembly for a file
+test/test_nautyClassify.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.s
+.PHONY : test/test_nautyClassify.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -235,10 +322,19 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... nauty_build"
+	@echo "... nauty_classify"
 	@echo "... nauty_wrapper"
+	@echo "... test_classify"
+	@echo "... wrapper_test"
+	@echo "... src/nautyClassify.o"
+	@echo "... src/nautyClassify.i"
+	@echo "... src/nautyClassify.s"
 	@echo "... src/nauty_wrapper.o"
 	@echo "... src/nauty_wrapper.i"
 	@echo "... src/nauty_wrapper.s"
+	@echo "... test/test_nautyClassify.o"
+	@echo "... test/test_nautyClassify.i"
+	@echo "... test/test_nautyClassify.s"
 .PHONY : help
 
 

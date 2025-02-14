@@ -64,6 +64,8 @@ CMAKE_BINARY_DIR = /scratch/users/md724/nauty-wrapper/build
 
 # The main recursive "all" target.
 all: CMakeFiles/nauty_wrapper.dir/all
+all: CMakeFiles/nauty_classify.dir/all
+all: CMakeFiles/test_classify.dir/all
 all: test/all
 .PHONY : all
 
@@ -74,6 +76,8 @@ preinstall: test/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/nauty_build.dir/clean
 clean: CMakeFiles/nauty_wrapper.dir/clean
+clean: CMakeFiles/nauty_classify.dir/clean
+clean: CMakeFiles/test_classify.dir/clean
 clean: test/clean
 .PHONY : clean
 
@@ -81,7 +85,7 @@ clean: test/clean
 # Directory level rules for directory test
 
 # Recursive "all" directory target.
-test/all:
+test/all: test/CMakeFiles/wrapper_test.dir/all
 .PHONY : test/all
 
 # Recursive "preinstall" directory target.
@@ -89,7 +93,7 @@ test/preinstall:
 .PHONY : test/preinstall
 
 # Recursive "clean" directory target.
-test/clean:
+test/clean: test/CMakeFiles/wrapper_test.dir/clean
 .PHONY : test/clean
 
 #=============================================================================
@@ -125,7 +129,7 @@ CMakeFiles/nauty_build.dir/clean:
 CMakeFiles/nauty_wrapper.dir/all: CMakeFiles/nauty_build.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/scratch/users/md724/nauty-wrapper/build/CMakeFiles --progress-num=1,2 "Built target nauty_wrapper"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/scratch/users/md724/nauty-wrapper/build/CMakeFiles --progress-num=3,4 "Built target nauty_wrapper"
 .PHONY : CMakeFiles/nauty_wrapper.dir/all
 
 # Build rule for subdir invocation for target.
@@ -143,6 +147,86 @@ nauty_wrapper: CMakeFiles/nauty_wrapper.dir/rule
 CMakeFiles/nauty_wrapper.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/clean
 .PHONY : CMakeFiles/nauty_wrapper.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/nauty_classify.dir
+
+# All Build rule for target.
+CMakeFiles/nauty_classify.dir/all: CMakeFiles/nauty_build.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/scratch/users/md724/nauty-wrapper/build/CMakeFiles --progress-num=1,2 "Built target nauty_classify"
+.PHONY : CMakeFiles/nauty_classify.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/nauty_classify.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/nauty_classify.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 0
+.PHONY : CMakeFiles/nauty_classify.dir/rule
+
+# Convenience name for target.
+nauty_classify: CMakeFiles/nauty_classify.dir/rule
+.PHONY : nauty_classify
+
+# clean rule for target.
+CMakeFiles/nauty_classify.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/clean
+.PHONY : CMakeFiles/nauty_classify.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_classify.dir
+
+# All Build rule for target.
+CMakeFiles/test_classify.dir/all: CMakeFiles/nauty_build.dir/all
+CMakeFiles/test_classify.dir/all: CMakeFiles/nauty_classify.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/scratch/users/md724/nauty-wrapper/build/CMakeFiles --progress-num=5,6 "Built target test_classify"
+.PHONY : CMakeFiles/test_classify.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_classify.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_classify.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_classify.dir/rule
+
+# Convenience name for target.
+test_classify: CMakeFiles/test_classify.dir/rule
+.PHONY : test_classify
+
+# clean rule for target.
+CMakeFiles/test_classify.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/clean
+.PHONY : CMakeFiles/test_classify.dir/clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/wrapper_test.dir
+
+# All Build rule for target.
+test/CMakeFiles/wrapper_test.dir/all: CMakeFiles/nauty_build.dir/all
+test/CMakeFiles/wrapper_test.dir/all: CMakeFiles/nauty_wrapper.dir/all
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/scratch/users/md724/nauty-wrapper/build/CMakeFiles --progress-num=7,8 "Built target wrapper_test"
+.PHONY : test/CMakeFiles/wrapper_test.dir/all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/wrapper_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/wrapper_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/wrapper_test.dir/rule
+
+# Convenience name for target.
+wrapper_test: test/CMakeFiles/wrapper_test.dir/rule
+.PHONY : wrapper_test
+
+# clean rule for target.
+test/CMakeFiles/wrapper_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/clean
+.PHONY : test/CMakeFiles/wrapper_test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

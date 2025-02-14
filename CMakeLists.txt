@@ -33,18 +33,36 @@ add_library(nauty_wrapper
     src/nauty_wrapper.cpp
 )
 
+# Add nauty_classify library
+add_library(nauty_classify
+    src/nautyClassify.cpp
+)
+
+# Link libraries with nauty
+target_link_libraries(nauty_wrapper PRIVATE nauty)
+target_link_libraries(nauty_classify PRIVATE nauty)
+
+# Add test executable for classify
+add_executable(test_classify
+    test/test_nautyClassify.cpp
+)
+
+# Link test_classify with nauty_classify
+target_link_libraries(test_classify PRIVATE nauty_classify)
+
 # Add dependencies
 add_dependencies(nauty_wrapper nauty)
-
-# Link against Nauty
-target_link_libraries(nauty_wrapper PRIVATE nauty)
+add_dependencies(nauty_classify nauty)
 
 # Add tests
 enable_testing()
 add_subdirectory(test)
 
+# Add test to CTest
+add_test(NAME ClassifyTest COMMAND test_classify)
+
 # Installation rules
-install(TARGETS nauty_wrapper
+install(TARGETS nauty_wrapper nauty_classify
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
     RUNTIME DESTINATION bin

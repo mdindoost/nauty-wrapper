@@ -1,5 +1,7 @@
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/nauty_build.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/nauty_wrapper.dir
+/scratch/users/md724/nauty-wrapper/build/CMakeFiles/nauty_classify.dir
+/scratch/users/md724/nauty-wrapper/build/CMakeFiles/test_classify.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/test.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/edit_cache.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/rebuild_cache.dir
@@ -7,6 +9,7 @@
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/install.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/install/local.dir
 /scratch/users/md724/nauty-wrapper/build/CMakeFiles/install/strip.dir
+/scratch/users/md724/nauty-wrapper/build/test/CMakeFiles/wrapper_test.dir
 /scratch/users/md724/nauty-wrapper/build/test/CMakeFiles/test.dir
 /scratch/users/md724/nauty-wrapper/build/test/CMakeFiles/edit_cache.dir
 /scratch/users/md724/nauty-wrapper/build/test/CMakeFiles/rebuild_cache.dir

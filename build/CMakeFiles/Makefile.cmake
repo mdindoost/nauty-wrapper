@@ -127,4 +127,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/nauty_build.dir/DependInfo.cmake"
   "CMakeFiles/nauty_wrapper.dir/DependInfo.cmake"
+  "CMakeFiles/nauty_classify.dir/DependInfo.cmake"
+  "CMakeFiles/test_classify.dir/DependInfo.cmake"
+  "test/CMakeFiles/wrapper_test.dir/DependInfo.cmake"
   )
