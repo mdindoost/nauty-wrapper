@@ -1,0 +1,11 @@
+prefix=/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: nauty
+Description: Programs and library for graph isomorphism
+Version: 2.8.9
+Libs: -L${libdir} -lnautyW
+Libs.private:
+Cflags: -I${includedir} -DWORDSIZE=32

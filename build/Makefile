@@ -57,23 +57,13 @@ RM = /scratch/shared/apps/cmake/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /scratch/users/md724/nauty-wrapper
+CMAKE_SOURCE_DIR = /scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /scratch/users/md724/nauty-wrapper/build
+CMAKE_BINARY_DIR = /scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/scratch/shared/apps/cmake/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -95,56 +85,11 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/scratch/shared/apps/cmake/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/scratch/shared/apps/cmake/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/scratch/shared/apps/cmake/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/scratch/shared/apps/cmake/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/scratch/shared/apps/cmake/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/scratch/shared/apps/cmake/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles /scratch/users/md724/nauty-wrapper/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles /scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/nauty-wrapper/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -172,30 +117,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named nauty_build
+# Target rules for targets named create_dirs
 
 # Build rule for target.
-nauty_build: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nauty_build
-.PHONY : nauty_build
+create_dirs: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 create_dirs
+.PHONY : create_dirs
 
 # fast build rule for target.
-nauty_build/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_build.dir/build.make CMakeFiles/nauty_build.dir/build
-.PHONY : nauty_build/fast
+create_dirs/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/create_dirs.dir/build.make CMakeFiles/create_dirs.dir/build
+.PHONY : create_dirs/fast
 
 #=============================================================================
-# Target rules for targets named nauty_wrapper
+# Target rules for targets named nauty_objects
 
 # Build rule for target.
-nauty_wrapper: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nauty_wrapper
-.PHONY : nauty_wrapper
+nauty_objects: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 nauty_objects
+.PHONY : nauty_objects
 
 # fast build rule for target.
-nauty_wrapper/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/build
-.PHONY : nauty_wrapper/fast
+nauty_objects/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_objects.dir/build.make CMakeFiles/nauty_objects.dir/build
+.PHONY : nauty_objects/fast
 
 #=============================================================================
 # Target rules for targets named nauty_classify
@@ -210,104 +155,6 @@ nauty_classify/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/build
 .PHONY : nauty_classify/fast
 
-#=============================================================================
-# Target rules for targets named test_classify
-
-# Build rule for target.
-test_classify: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_classify
-.PHONY : test_classify
-
-# fast build rule for target.
-test_classify/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/build
-.PHONY : test_classify/fast
-
-#=============================================================================
-# Target rules for targets named wrapper_test
-
-# Build rule for target.
-wrapper_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 wrapper_test
-.PHONY : wrapper_test
-
-# fast build rule for target.
-wrapper_test/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/wrapper_test.dir/build.make test/CMakeFiles/wrapper_test.dir/build
-.PHONY : wrapper_test/fast
-
-src/nautyClassify.o: src/nautyClassify.cpp.o
-.PHONY : src/nautyClassify.o
-
-# target to build an object file
-src/nautyClassify.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.o
-.PHONY : src/nautyClassify.cpp.o
-
-src/nautyClassify.i: src/nautyClassify.cpp.i
-.PHONY : src/nautyClassify.i
-
-# target to preprocess a source file
-src/nautyClassify.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.i
-.PHONY : src/nautyClassify.cpp.i
-
-src/nautyClassify.s: src/nautyClassify.cpp.s
-.PHONY : src/nautyClassify.s
-
-# target to generate assembly for a file
-src/nautyClassify.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_classify.dir/build.make CMakeFiles/nauty_classify.dir/src/nautyClassify.cpp.s
-.PHONY : src/nautyClassify.cpp.s
-
-src/nauty_wrapper.o: src/nauty_wrapper.cpp.o
-.PHONY : src/nauty_wrapper.o
-
-# target to build an object file
-src/nauty_wrapper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/src/nauty_wrapper.cpp.o
-.PHONY : src/nauty_wrapper.cpp.o
-
-src/nauty_wrapper.i: src/nauty_wrapper.cpp.i
-.PHONY : src/nauty_wrapper.i
-
-# target to preprocess a source file
-src/nauty_wrapper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/src/nauty_wrapper.cpp.i
-.PHONY : src/nauty_wrapper.cpp.i
-
-src/nauty_wrapper.s: src/nauty_wrapper.cpp.s
-.PHONY : src/nauty_wrapper.s
-
-# target to generate assembly for a file
-src/nauty_wrapper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/nauty_wrapper.dir/build.make CMakeFiles/nauty_wrapper.dir/src/nauty_wrapper.cpp.s
-.PHONY : src/nauty_wrapper.cpp.s
-
-test/test_nautyClassify.o: test/test_nautyClassify.cpp.o
-.PHONY : test/test_nautyClassify.o
-
-# target to build an object file
-test/test_nautyClassify.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.o
-.PHONY : test/test_nautyClassify.cpp.o
-
-test/test_nautyClassify.i: test/test_nautyClassify.cpp.i
-.PHONY : test/test_nautyClassify.i
-
-# target to preprocess a source file
-test/test_nautyClassify.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.i
-.PHONY : test/test_nautyClassify.cpp.i
-
-test/test_nautyClassify.s: test/test_nautyClassify.cpp.s
-.PHONY : test/test_nautyClassify.s
-
-# target to generate assembly for a file
-test/test_nautyClassify.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_classify.dir/build.make CMakeFiles/test_classify.dir/test/test_nautyClassify.cpp.s
-.PHONY : test/test_nautyClassify.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -315,26 +162,10 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... nauty_build"
+	@echo "... create_dirs"
 	@echo "... nauty_classify"
-	@echo "... nauty_wrapper"
-	@echo "... test_classify"
-	@echo "... wrapper_test"
-	@echo "... src/nautyClassify.o"
-	@echo "... src/nautyClassify.i"
-	@echo "... src/nautyClassify.s"
-	@echo "... src/nauty_wrapper.o"
-	@echo "... src/nauty_wrapper.i"
-	@echo "... src/nauty_wrapper.s"
-	@echo "... test/test_nautyClassify.o"
-	@echo "... test/test_nautyClassify.i"
-	@echo "... test/test_nautyClassify.s"
+	@echo "... nauty_objects"
 .PHONY : help
 
 

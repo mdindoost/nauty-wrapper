@@ -99,11 +99,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/scratch/shared/apps/cmake/share/cmake-3.26/Modules/Platform/Linux-GNU.cmake"
   "/scratch/shared/apps/cmake/share/cmake-3.26/Modules/Platform/Linux.cmake"
   "/scratch/shared/apps/cmake/share/cmake-3.26/Modules/Platform/UnixPaths.cmake"
-  "/scratch/users/md724/nauty-wrapper/CMakeLists.txt"
+  "/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/CMakeLists.txt"
   "CMakeFiles/3.26.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.26.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.26.3/CMakeSystem.cmake"
-  "/scratch/users/md724/nauty-wrapper/test/CMakeLists.txt"
   )
 
 # The corresponding makefile is:
@@ -120,14 +119,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/3.26.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.26.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "test/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/nauty_build.dir/DependInfo.cmake"
-  "CMakeFiles/nauty_wrapper.dir/DependInfo.cmake"
+  "CMakeFiles/create_dirs.dir/DependInfo.cmake"
+  "CMakeFiles/nauty_objects.dir/DependInfo.cmake"
   "CMakeFiles/nauty_classify.dir/DependInfo.cmake"
-  "CMakeFiles/test_classify.dir/DependInfo.cmake"
-  "test/CMakeFiles/wrapper_test.dir/DependInfo.cmake"
   )

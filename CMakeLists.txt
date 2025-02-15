@@ -3,51 +3,32 @@ project(nauty_wrapper VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)  # Add -fPIC flag
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Nauty build configuration
+# Nauty source directory
 set(NAUTY_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/nauty2_8_9)
-set(NAUTY_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/nauty)
 
-# Create custom target for building Nauty
-add_custom_target(nauty_build
-    COMMAND ./configure CFLAGS=-fPIC  # Add -fPIC to Nauty compilation
-    COMMAND make
-    WORKING_DIRECTORY ${NAUTY_SOURCE_DIR}
+# Create bin directory
+add_custom_target(create_dirs ALL
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/bin
 )
 
-# Define Nauty library target
-add_library(nauty STATIC IMPORTED)
-set_target_properties(nauty PROPERTIES 
-    IMPORTED_LOCATION ${NAUTY_SOURCE_DIR}/nauty.a
-)
-add_dependencies(nauty nauty_build)
-
-# Include directories
-include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${NAUTY_SOURCE_DIR}
+# Compile nauty object files
+add_custom_target(nauty_objects ALL
+    COMMAND ${CMAKE_C_COMPILER} -c ${NAUTY_SOURCE_DIR}/nauty.c 
+            -I${NAUTY_SOURCE_DIR} -fPIC -o ${CMAKE_SOURCE_DIR}/bin/nauty.o
+    COMMAND ${CMAKE_C_COMPILER} -c ${NAUTY_SOURCE_DIR}/naugraph.c 
+            -I${NAUTY_SOURCE_DIR} -fPIC -o ${CMAKE_SOURCE_DIR}/bin/naugraph.o
+    COMMAND ${CMAKE_C_COMPILER} -c ${NAUTY_SOURCE_DIR}/nautil.c 
+            -I${NAUTY_SOURCE_DIR} -fPIC -o ${CMAKE_SOURCE_DIR}/bin/nautil.o
+    DEPENDS create_dirs
 )
 
-# Add nauty_classify library
-add_library(nauty_classify
-    src/nautyClassify.cpp
-)
-
-# Link libraries with nauty
-target_link_libraries(nauty_classify PRIVATE nauty)
-
-# Add dependencies
-add_dependencies(nauty_classify nauty)
-
-# Installation rules - install to bin directory for Chapel
-install(TARGETS nauty_classify
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-)
-
-# Install header files
-install(FILES include/nautyClassify.h
-    DESTINATION include
+# Compile nautyClassify.cpp to object file
+add_custom_target(nauty_classify ALL
+    COMMAND ${CMAKE_CXX_COMPILER} -c ${CMAKE_SOURCE_DIR}/src/nautyClassify.cpp
+            -I${CMAKE_SOURCE_DIR}/include
+            -I${NAUTY_SOURCE_DIR}
+            -fPIC -o ${CMAKE_SOURCE_DIR}/bin/nautyClassify.o
+    DEPENDS nauty_objects
 )

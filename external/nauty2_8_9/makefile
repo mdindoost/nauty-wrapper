@@ -4,7 +4,7 @@ RELEASE=2.8.9
 
 SHELL=/bin/sh
 CC=gcc
-CFLAGS= -O4  -mpopcnt -march=native
+CFLAGS=-fPIC  -mpopcnt -march=native
 LDFLAGS= 
 TESTPROGS=dreadtest dreadtestS dreadtestS1 dreadtest4K dreadtest1 dreadtestW dreadtestW1 dreadtestL dreadtestL1 dreadtestQ dreadtestQ1
 NAUTESTS=nautest nautestS nautestW nautestL nautestQ
@@ -21,7 +21,7 @@ CCOBJ=${LTC} -o $@
 
 # Trailing spaces in the following will cause problems
 
-prefix=/usr/local
+prefix=/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper
 exec_prefix=${prefix}
 bindir=${exec_prefix}/bin
 libdir=${exec_prefix}/lib

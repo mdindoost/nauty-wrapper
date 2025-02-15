@@ -1,7 +1,7 @@
 #ifndef NAUTY_CLASSIFY_H
 #define NAUTY_CLASSIFY_H
 
-#include <cstdint>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
