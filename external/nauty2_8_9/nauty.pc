@@ -1,4 +1,4 @@
-prefix=/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper
+prefix=/usr/local
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

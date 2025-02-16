@@ -1,5 +1,0 @@
-/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles/create_dirs.dir
-/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles/nauty_objects.dir
-/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles/nauty_classify.dir
-/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles/edit_cache.dir
-/scratch/users/md724/arkouda-njit/arachne/server/nauty-wrapper/build/CMakeFiles/rebuild_cache.dir

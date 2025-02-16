@@ -1,44 +1,60 @@
 # Compiler and Flags
 CXX = g++
 CFLAGS = -O3 -w -fPIC -I./include -I./external/nauty2_8_9 -c
-LDFLAGS = -L./external/nauty2_8_9 -Wl,-rpath,$(PWD)/external/nauty2_8_9 -lnauty
+INCLUDES = -I./include -I./external/nauty2_8_9
 
 # Directories
 BIN_DIR = bin
 SRC_DIR = src
 LIB_DIR = external/nauty2_8_9
 
-# Targets
-OBJECTS = $(BIN_DIR)/nautyClassify.o
-EXECUTABLE = $(BIN_DIR)/nauty_test
+# Nauty object files needed (excluding our wrapper)
+NAUTY_OBJECTS = nauty.o nautil.o naugraph.o schreier.o naurng.o nausparse.o
 
 # Default Target
-all: set_library_path $(OBJECTS) $(EXECUTABLE)
+all: setup nauty_objects copy_objects compile_wrapper test_exe
 
-# Set LD_LIBRARY_PATH dynamically
-set_library_path:
-	@export LD_LIBRARY_PATH=$(PWD)/$(LIB_DIR):$$LD_LIBRARY_PATH
-	@echo "LD_LIBRARY_PATH set to: $(PWD)/$(LIB_DIR)"
-
-# Create bin directory if it doesn't exist
-$(BIN_DIR):
+# Create necessary directories and prepare nauty
+setup:
 	@mkdir -p $(BIN_DIR)
+	@echo "Setting up build environment..."
+	@if [ ! -f $(LIB_DIR)/config.h ]; then \
+		cd $(LIB_DIR) && ./configure CFLAGS="-fPIC -O3"; \
+	fi
 
-# Build nauty library
-$(LIB_DIR)/libnauty.so:
-	cd $(LIB_DIR) && ./configure CFLAGS=-fPIC && make
+# Build nauty object files
+nauty_objects:
+	@echo "Building nauty objects..."
+	@cd $(LIB_DIR) && make $(NAUTY_OBJECTS)
 
-# Compile nautyClassify.cpp into an object file for Chapel
-$(BIN_DIR)/nautyClassify.o: $(SRC_DIR)/nautyClassify.cpp include/nautyClassify.h | $(BIN_DIR)
-	$(CXX) $(CFLAGS) $< -o $@
+# Copy nauty object files to bin directory
+copy_objects: nauty_objects
+	@echo "Copying nauty object files to bin directory..."
+	@for obj in $(NAUTY_OBJECTS); do \
+		cp $(LIB_DIR)/$$obj $(BIN_DIR)/; \
+	done
 
-# Compile test executable
-$(EXECUTABLE): $(SRC_DIR)/test_nautyClassify.cpp $(OBJECTS) $(LIB_DIR)/libnauty.so
-	$(CXX) -o $@ $(OBJECTS) $< $(LDFLAGS)
+# Compile our wrapper
+compile_wrapper: $(SRC_DIR)/nautyClassify.cpp include/nautyClassify.h
+	@echo "Compiling nautyClassify.cpp..."
+	$(CXX) $(CFLAGS) $< -o $(BIN_DIR)/nautyClassify.o
 
-# Run the executable with correct LD_LIBRARY_PATH
-run: all
-	@LD_LIBRARY_PATH=$(PWD)/$(LIB_DIR) ./$(EXECUTABLE)
+# Build test executable
+test_exe: $(SRC_DIR)/test_nautyClassify.cpp
+	@echo "Building test executable..."
+	$(CXX) $(INCLUDES) -o $(BIN_DIR)/nauty_test $< \
+		$(BIN_DIR)/nautyClassify.o \
+		$(addprefix $(BIN_DIR)/,$(NAUTY_OBJECTS))
+
+# Run the test
+test: all
+	@echo "Running tests..."
+	./$(BIN_DIR)/nauty_test
+
+# Verify objects
+verify_objects:
+	@echo "Checking object files in bin directory:"
+	@ls -l $(BIN_DIR)/*.o
 
 # Clean Build Artifacts
 clean:
@@ -46,4 +62,4 @@ clean:
 	rm -rf $(BIN_DIR)
 	cd $(LIB_DIR) && make clean
 
-.PHONY: clean set_library_path all run
+.PHONY: clean setup all test verify_objects nauty_objects copy_objects compile_wrapper test_exe
