@@ -6,7 +6,7 @@
 #include <memory>
 
 static std::mutex cout_mutex;
-static std::mutex nauty_mutex;  // Global mutex for nauty operations
+static std::mutex nauty_mutex;
 
 extern "C" {
 
@@ -17,7 +17,6 @@ int64_t nautyClassify(
     int64_t performCheck, 
     int64_t verbose
 ) {
-    // Use RAII for thread-safe output
     auto print_verbose = [&](const std::string& msg) {
         if (verbose) {
             std::lock_guard<std::mutex> lock(cout_mutex);
@@ -30,29 +29,29 @@ int64_t nautyClassify(
     print_verbose("subgraphSize: " + std::to_string(subgraphSize));
     print_verbose("performCheck: " + std::to_string(performCheck));
 
-    // Calculate required words for sets
+    // Calculate array sizes
     int m = SETWORDSNEEDED(subgraphSize);
     if (subgraphSize > WORDSIZE * m) {
         std::cerr << "Error: Graph size too large for current word size" << std::endl;
         return -1;
     }
 
-    // Use unique_ptr for automatic memory management
-    std::unique_ptr<graph[]> g(new graph[MAXN * m]);
-    std::unique_ptr<graph[]> canong(new graph[MAXN * m]);
-    std::unique_ptr<int[]> lab(new int[MAXN]);
-    std::unique_ptr<int[]> ptn(new int[MAXN]);
-    std::unique_ptr<int[]> orbits(new int[MAXN]);
-    std::unique_ptr<setword[]> workspace(new setword[50 * m]);
-    std::unique_ptr<bool[]> used(new bool[subgraphSize]());
+    // Allocate arrays with exact sizes needed
+    std::unique_ptr<graph[]> g(new graph[m * subgraphSize]);
+    std::unique_ptr<graph[]> canong(new graph[m * subgraphSize]);
+    std::unique_ptr<int[]> lab(new int[subgraphSize]);
+    std::unique_ptr<int[]> ptn(new int[subgraphSize]);
+    std::unique_ptr<int[]> orbits(new int[subgraphSize]);
+    std::unique_ptr<setword[]> workspace(new setword[100 * m]); // Increased workspace
+    std::unique_ptr<bool[]> used(new bool[subgraphSize]);
 
     // Zero out the arrays
-    std::memset(g.get(), 0, sizeof(graph) * MAXN * m);
-    std::memset(canong.get(), 0, sizeof(graph) * MAXN * m);
-    std::memset(lab.get(), 0, sizeof(int) * MAXN);
-    std::memset(ptn.get(), 0, sizeof(int) * MAXN);
-    std::memset(orbits.get(), 0, sizeof(int) * MAXN);
-    std::memset(workspace.get(), 0, sizeof(setword) * 50 * m);
+    std::memset(g.get(), 0, sizeof(graph) * m * subgraphSize);
+    std::memset(canong.get(), 0, sizeof(graph) * m * subgraphSize);
+    std::memset(lab.get(), 0, sizeof(int) * subgraphSize);
+    std::memset(ptn.get(), 0, sizeof(int) * subgraphSize);
+    std::memset(orbits.get(), 0, sizeof(int) * subgraphSize);
+    std::memset(workspace.get(), 0, sizeof(setword) * 100 * m);
     std::memset(used.get(), 0, sizeof(bool) * subgraphSize);
 
     // Perform nauty check if requested
@@ -88,7 +87,7 @@ int64_t nautyClassify(
         }
     }
 
-    print_verbose("\nCalling nauty...");
+    print_verbose("\nCalling nauty with m=" + std::to_string(m) + ", n=" + std::to_string(subgraphSize));
 
     // Create options (must be thread-local)
     DEFAULTOPTIONS_GRAPH(options);
@@ -97,11 +96,10 @@ int64_t nautyClassify(
     options.digraph = TRUE;
     statsblk stats;
 
-    // Lock during nauty call
     {
         std::lock_guard<std::mutex> lock(nauty_mutex);
         nauty(g.get(), lab.get(), ptn.get(), nullptr, orbits.get(), &options, &stats, 
-              workspace.get(), 50 * m, m, subgraphSize, canong.get());
+              workspace.get(), 100 * m, m, subgraphSize, canong.get());
     }
 
     print_verbose("Nauty completed. Validating results...");
