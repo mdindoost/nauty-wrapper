@@ -150,7 +150,41 @@ Chapel usage:
 chapelCopyvar subgraph: [0..8] int(64) = [0, 1, 0, 0, 0, 1, 0, 0, 0];
 var results: [0..2] int(64);
 var ret = c_nautyClassify(subgraph, 3, results, 1, 1);
-License
+# Arachne users
+```bash
+git submodule update --init --recursive
+```
+1. First, create the external directory and download nauty:
+
+```bash
+# From nauty-wrapper directory
+mkdir -p external
+cd external
+wget https://pallini.di.uniroma1.it/nauty2_8_9.tar.gz
+tar -xzf nauty2_8_9.tar.gz
+rm nauty2_8_9.tar.gz
+cd ..
+```
+2. Now let's copy the automake config files:
+
+
+```bash
+# First check if they exist
+ls /usr/share/automake*/config.guess
+ls /usr/share/automake*/config.sub
+
+# Then copy them
+cp /usr/share/automake-1.16/config.guess external/nauty2_8_9/
+cp /usr/share/automake-1.16/config.sub external/nauty2_8_9/
+```
+3. Now try building:
+```bash
+make clean
+make
+make verify_objects
+```
+
+# License
 This wrapper is provided under the MIT License. Note that Nauty itself has its own license terms which must be respected.
 Acknowledgments
 
