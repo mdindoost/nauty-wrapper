@@ -17,6 +17,7 @@ Make build system
 Nauty (automatically downloaded and built)
 
 # Project Structure
+```bash
 
 nauty-wrapper/
 ├── bin/                   # Compiled object files
@@ -27,7 +28,7 @@ nauty-wrapper/
 └── src/
     ├── nautyClassify.cpp # Wrapper implementation
     └── test_nautyClassify.cpp # Test program
-
+```
 # Building
 
 Clone the repository:
@@ -96,8 +97,9 @@ Add this repository as a submodule:
 git submodule add <repository-url> path/to/nauty-wrapper
 
 In your Chapel code, require the necessary files:
+```bash
 
-chapelCopyrequire "nauty-wrapper/bin/nautyClassify.o",
+require "nauty-wrapper/bin/nautyClassify.o",
         "nauty-wrapper/include/nautyClassify.h",
         "nauty-wrapper/bin/nauty.o",
         "nauty-wrapper/bin/nautil.o",
@@ -114,7 +116,11 @@ extern proc c_nautyClassify(
     performCheck: int(64),
     verbose: int(64)
 ) : int(64);
+
+```
 Function Documentation
+```bash
+
 nautyClassify
 
 int64_t nautyClassify(
@@ -131,14 +137,17 @@ subgraphSize: Number of vertices in the graph
 results: Array to store the resulting vertex mappings
 performCheck: Flag to enable additional validation
 verbose: Flag to enable detailed debug output
-
+```
 Returns:
+```bash
 
 0 on success
 Negative values indicate specific errors
-
-Examples
+```
+# Examples
 C++ usage:
+```bash
+
 cppCopyint64_t subgraph[] = {
     0, 1, 0,
     0, 0, 1,
