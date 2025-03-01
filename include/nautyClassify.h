@@ -13,7 +13,9 @@ int64_t nautyClassify(
     int64_t subgraphSize,  // Size of the matrix
     int64_t results[],     // Output array for vertex mappings
     int64_t performCheck,  // Validation flag
-    int64_t verbose        // Debug output flag
+    int64_t verbose,        // Debug output flag
+    int64_t batchSize
+
 );
 
 // C wrapper for Chapel interoperability
@@ -22,7 +24,9 @@ int64_t c_nautyClassify(
     int64_t subgraphSize,
     int64_t results[],
     int64_t performCheck,
-    int64_t verbose
+    int64_t verbose,
+    int64_t batchSize
+
 );
 
 #ifdef __cplusplus

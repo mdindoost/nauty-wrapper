@@ -15,7 +15,8 @@ int64_t nautyClassify(
     int64_t subgraphSize, 
     int64_t results[], 
     int64_t performCheck, 
-    int64_t verbose
+    int64_t verbose,
+    int64_t batchSize
 ) {
     auto print_verbose = [&](const std::string& msg) {
         if (verbose) {
@@ -134,9 +135,34 @@ int64_t c_nautyClassify(
     int64_t subgraphSize, 
     int64_t results[], 
     int64_t performCheck, 
-    int64_t verbose
+    int64_t verbose,
+    int64_t batchSize
 ) {
-    return nautyClassify(subgraph, subgraphSize, results, performCheck, verbose);
+    // If batch size is 0 or 1, process as a single matrix
+    if (batchSize <= 1) {
+        return nautyClassify(subgraph, subgraphSize, results, performCheck, verbose, batchSize);
+    }
+    
+    // Process as batch
+    int matrixSize = subgraphSize * subgraphSize;
+    
+    for (int i = 0; i < batchSize; i++) {
+        // Get pointers to current matrix and results
+        int64_t* currentMatrix = &subgraph[i * matrixSize];
+        int64_t* currentResults = &results[i * subgraphSize];
+        
+        // Process this matrix
+        int64_t ret = nautyClassify(currentMatrix, subgraphSize, currentResults, performCheck, verbose, batchSize);
+        
+        // If error, indicate in results
+        if (ret != 0) {
+            for (int j = 0; j < subgraphSize; j++) {
+                currentResults[j] = -2; // Error indicator
+            }
+        }
+    }
+    
+    return 0;
 }
 
 } // extern "C"
